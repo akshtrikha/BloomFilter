@@ -52,6 +52,8 @@ func murmurHash(key string, filterSize uint32, hashFns *HashFns) []uint32 {
 // NewBloomFilter - function that creates the bloom filter
 func NewBloomFilter(size uint32) *BloomFilter {
 	return &BloomFilter{
+		// Taking ceil of the size provided after dividing by 8 to reserve the required memory in bits
+		// instead of byts.
 		make([]uint8, (size+7)/8),
 		size,
 	}
